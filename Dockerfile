@@ -6,10 +6,8 @@ COPY bootstrap /opt/bootstrap/
 RUN chmod +x /opt/bootstrap/scripts/init.sh
 RUN chmod +x /opt/bootstrap/bootstrap.sh
 
-# No module named 'yaml' error happens.. so I copy from local
-# RUN pip3 install awscli-local
-COPY awslocal /usr/local/bin/
-RUN chmod +x /usr/local/bin/awslocal
+RUN pip install --upgrade pip
+RUN pip install awscli-local
 
 # We run the init script as a health check
 # That way the container won't be healthy until it's completed successfully
