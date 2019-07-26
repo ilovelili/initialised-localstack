@@ -1,6 +1,7 @@
 ARG  LOCALSTACK_DOCKER_IMAGE_TAG=latest
 FROM localstack/localstack:$LOCALSTACK_DOCKER_IMAGE_TAG
 
+RUN apk add --no-cache jq
 COPY bootstrap /opt/bootstrap/
 
 RUN chmod +x /opt/bootstrap/scripts/init.sh
