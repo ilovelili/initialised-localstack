@@ -15,5 +15,5 @@ RUN cp -r /usr/lib/python3.6/site-packages/yaml /opt/code/localstack/.venv/lib/p
 # We run the init script as a health check
 # That way the container won't be healthy until it's completed successfully
 # Once the init completes we wipe it to prevent it continiously running
-HEALTHCHECK --start-period=10s --interval=1s --timeout=3s --retries=30\
+HEALTHCHECK --start-period=10s --interval=10s --timeout=10s --retries=5\
   CMD /opt/bootstrap/bootstrap.sh
