@@ -2,11 +2,13 @@ ARG  LOCALSTACK_DOCKER_IMAGE_TAG=latest
 FROM localstack/localstack:$LOCALSTACK_DOCKER_IMAGE_TAG
 
 RUN apk add --no-cache jq
-COPY bootstrap /opt/bootstrap/
+ENV SRC_DIR=/opt/bootstrap
 
-RUN chmod +x /opt/bootstrap/scripts/init.sh
-RUN chmod +x /opt/bootstrap/bootstrap.sh
+COPY bootstrap $SRC_DIR
+RUN chmod +x $SRC_DIR/scripts/init.sh
+RUN chmod +x $SRC_DIR/bootstrap.sh
 
+RUN pip install --upgrade pip
 RUN pip install awscli-local
 
 # Fix dependency bug (otherwise aws cli throws `No module named 'yaml'` error)
